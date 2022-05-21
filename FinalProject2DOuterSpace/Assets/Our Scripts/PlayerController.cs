@@ -9,10 +9,14 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
+    
+    public int MaxAmmo = 5;
+    public int CurrentAmmo;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        CurrentAmmo = MaxAmmo;
     }
 
     // Update is called once per frame
@@ -22,9 +26,15 @@ public class PlayerController : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         Vector2 move = new Vector2(horizontal, vertical);
         
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && CurrentAmmo > 0)
         {
             Launch();
+            PlayerController controller = GetComponent<PlayerController>();
+
+            if (controller != null)
+            {
+                controller.ChangeAmmo(-1);
+            }
         }
     }
     void FixedUpdate()
@@ -57,6 +67,20 @@ public class PlayerController : MonoBehaviour
 
             
         
+    }
+    public void ChangeAmmo(int amount)
+    {
+        CurrentAmmo = Mathf.Clamp(CurrentAmmo + amount, 0, MaxAmmo);
+        Debug.Log(CurrentAmmo + "/" + MaxAmmo);
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        PlayerController controller = other.GetComponent<PlayerController>();
+
+        if (controller != null)
+        {
+            controller.ChangeAmmo(-1);
+        }
     }
 }
 
