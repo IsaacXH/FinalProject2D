@@ -12,11 +12,14 @@ public class PlayerController : MonoBehaviour
     
     public int MaxAmmo = 5;
     public int CurrentAmmo;
+    public int MaxHealth = 3;
+    public int CurrentHealth;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         CurrentAmmo = MaxAmmo;
+        CurrentHealth = MaxHealth;
     }
 
     // Update is called once per frame
@@ -73,13 +76,18 @@ public class PlayerController : MonoBehaviour
         CurrentAmmo = Mathf.Clamp(CurrentAmmo + amount, 0, MaxAmmo);
         Debug.Log(CurrentAmmo + "/" + MaxAmmo);
     }
+    public void ChangeHealth(int amount)
+    {
+        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, MaxHealth);
+        Debug.Log(CurrentHealth + "/" + MaxHealth);
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController controller = other.GetComponent<PlayerController>();
 
         if (controller != null)
         {
-            controller.ChangeAmmo(-1);
+            controller.ChangeHealth(-1);
         }
     }
 }

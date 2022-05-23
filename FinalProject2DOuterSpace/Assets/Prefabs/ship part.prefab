@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5552855541006798729}
   - component: {fileID: -2908582135906805803}
   - component: {fileID: -4712236007162501757}
+  - component: {fileID: 4606775656068805075}
   m_Layer: 0
   m_Name: ship part
   m_TagString: Untagged
@@ -135,5 +136,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37bf0541d5bca1e428b704fa80cd7c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4606775656068805075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7883228670193348455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d56e915f8eca5f4790315eda82d7591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
