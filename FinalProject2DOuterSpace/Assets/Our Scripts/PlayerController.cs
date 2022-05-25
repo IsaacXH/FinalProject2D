@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
-    
     public int MaxAmmo = 5;
     public int CurrentAmmo;
     public int MaxHealth = 3;
     public int CurrentHealth;
+    public bool isdead = false;
+    public static PlayerController instance;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,10 @@ public class PlayerController : MonoBehaviour
                 controller.ChangeAmmo(-1);
             }
         }
+        if(CurrentHealth == 0)
+        {
+            isdead = true;
+        }
     }
     void FixedUpdate()
     {
@@ -48,17 +54,7 @@ public class PlayerController : MonoBehaviour
         
         rigidbody2d.MovePosition(position);
     }
-    void OnCollisionEnter2D(Collision2D other)
-    {
-
-        
-
-        
-
-       
-
-        GameController.instance.PlayerDied();
-    }
+   
     void Launch()
     {
         
@@ -79,7 +75,7 @@ public class PlayerController : MonoBehaviour
     public void ChangeHealth(int amount)
     {
         CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, MaxHealth);
-        Debug.Log(CurrentHealth + "/" + MaxHealth);
+        HealthBar.instance.SetValue(CurrentHealth / (float)MaxHealth);
     }
     void OnTriggerEnter2D(Collider2D other)
     {

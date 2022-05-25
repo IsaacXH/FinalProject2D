@@ -6,7 +6,7 @@ public class Scrolling : MonoBehaviour
 {
 
     private Rigidbody2D rb2d;
-
+    
 
     void Start()
     {
@@ -19,10 +19,11 @@ public class Scrolling : MonoBehaviour
 
     void Update()
     {
+        
 
-       // if (GameController.instance.GameOver == true)
+        if (PlayerController.instance.isdead == true)
         {
-           // rb2d.velocity = Vector2.zero;
+            rb2d.velocity = Vector2.zero;
         }
     }
 }

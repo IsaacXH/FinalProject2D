@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] rockPrefabs;
     public int rockIndex;
     private float spawnrangeY = 6;
-    private float spawnInterval = 1.5f;
+    public float spawnInterval = 1.5f;
     private float startDelay = 2;
     // Start is called before the first frame update
     void Start()

@@ -1,60 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class ScoreKeeper : MonoBehaviour
 {
-    public UnityEngine.UI.Text timer;
-    private int time = 0;
-    public UnityEngine.UI.Text highscore;
+    bool stopwatchactive = false;
+    float Currenttime;
+    public Text currenttimetext;
+    int score;
+    public Text textscore;
 
-    void Start()
+void Start()
     {
-        if (PlayerPrefs.HasKey("Highscore") == true)
+        Currenttime = 0;
+    }
+     void Update()
+    {
+       //if (stopwatchactive == true)
         {
-            highscore.text = PlayerPrefs.GetInt("Highscore").ToString();
+            //Currenttime = Currenttime + Time.deltaTime;
         }
-        else
-        {
-            highscore.text = "No High Scores Yet";
-        }
+        //TimeSpan time = TimeSpan.FromSeconds(Currenttime);
+       // currenttimetext.text = time.ToString(@"mm\:ss\:fff");
     }
-
-    public void StartTimer()
-    {
-        time = 0;
-        InvokeRepeating("IncrimentTime", 1, 1);
-    }
-
-    public void StopTimer()
-    {
-        CancelInvoke();
-        if (PlayerPrefs.GetInt("Highscore") < time)
-        {
-            SetHighscore();
-        }
-
-    }
-
-    public void SetHighscore()
-    {
-        PlayerPrefs.SetInt("Highscore", time);
-        highscore.text = PlayerPrefs.GetInt("Highscore").ToString();
-
-    }
-
-    public void ClearHighscores()
-    {
-        PlayerPrefs.DeleteKey("Highscore");
-        highscore.text = "No High Scores Yet";
-    }
-
-    void IncrimentTime()
-    {
-        time += 1;
-        timer.text = "Time: " + time;
-    }
-
 }
 
